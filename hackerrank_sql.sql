@@ -77,10 +77,17 @@ WHERE CITY REGEXP '^[aeiou]'
 -- select distinct CITY from STATION where CITY RLIKE '^[AEIOU]'
 
 
+/*Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates*/
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY REGEXP '[aeiou]$'
+
+
 /*Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your result cannot contain duplicates.*/
 SELECT DISTINCT CITY
 FROM STATION
 WHERE CITY REGEXP '^[aeiou]' AND CITY REGEXP '[aeiou]$'
+
 
 
 
@@ -106,6 +113,29 @@ WHERE CITY REGEXP '^[^aeiou]' OR CITY REGEXP '[^aeiou]$'
 -- SELECT DISTINCT CITY FROM STATION WHERE UPPER(LEFT(CITY,1)) NOT IN ('A','E','I','O','U')  OR UPPER(RIGHT(CITY,1)) NOT IN ('A','E','I','O','U') ORDER BY CITY;
 
 
+
+/*Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your 	result cannot contain duplicates.*/
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY REGEXP '^[^aeiou]' AND CITY REGEXP '[^aeiou]$'
+-- select distinct CITY from STATION where CITY not regexp '^[aeiou]' and CITY not regexp '[aeiou]$' order by CITY;
+-- select distinct CITY from STATION where CITY regexp '^[^aeiouAEIOU].*.[^aeiouAEIOU]$' order by CITY;
+
+
+
+
+/*Query the Name of any student in STUDENTS who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.*/
+SELECT Name 
+FROM STUDENTS
+WHERE Marks > 75
+ORDER BY RIGHT(Name, 3), ID
+-- select Name from Students where Marks > 75 order by substring(Ucase(Name), -3) asc, id asc;
+
+
+/*Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.*/
+SELECT name
+FROM Employee
+ORDER BY name
 
 
 

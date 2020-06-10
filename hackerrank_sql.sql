@@ -141,9 +141,36 @@ ORDER BY name
 
 
 
+-- The PADS
+???
+SELECT Concat(Name, '(', Left(Occupation, 1), ')')
+FROM OCCUPATION
+ORDER BY Name
+
+-- SELECT Concat(NAME, CASE WHEN Occupation = "Doctor" THEN "(D)" WHEN Occupation = "Professor" THEN "(P)" WHEN Occupation = "Singer" THEN "(S)" WHEN Occupation = "Actor" THEN "(A)" END ) 
+-- FROM OCCUPATIONS
+-- ORDER BY NAME;
+
+SELECT Concat('There are a total of ', COUNT(Name), ' ', Lower(Occupation), 's.')
+FROM OCCUPATION
+GROUP BY Occupation
+ORDER BY COUNT(Name), Occupation
 
 
 
 
+
+
+The Blunder
+-- salary
+SELECT avg(Salary)
+FROM EMPLOYEES
+
+-- miscalculated salary
+SELECT avg(CAST(REGEXP_REPLACE(cast(Salary AS CHAR), '0', '') AS SIGNED))
+FROM EMPLOYEES
+
+
+SELECT CEIL(AVG(Salary)-AVG(REPLACE(Salary,'0',''))) FROM EMPLOYEES;
 
 
